@@ -5,6 +5,7 @@ public class Gate : MonoBehaviour
     public Attributes[] gives = new Attributes[] { };
     public Attributes[] removes = new Attributes[] { };
     // Start is called before the first frame update
+    public Attributes[] toggles = new Attributes[] { };
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +17,10 @@ public class Gate : MonoBehaviour
         foreach (var remove in removes)
         {
             attributeManager.attributes &= ~remove;
+        }
+        foreach (var toggle in toggles)
+        {
+            attributeManager.attributes ^= toggle;
         }
     }
     void Start()
